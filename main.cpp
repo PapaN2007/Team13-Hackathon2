@@ -15,7 +15,7 @@ int main() {
     SetTargetFPS(30);
 
     Texture2D start_photo = LoadTexture("Start_Screen.png"); //Image Generated Using Claude.
-    Texture2D game_photo = LoadTexture("game_image.jpg"); 
+    Texture2D game_photo = LoadTexture("game_image.png");  //Image Generated Using Claude.
     Texture2D gameButton = LoadTexture("Answer_Button.png"); // Load button texture
 
     float frameHeight = (float)gameButton.height/NUM_FRAMES;
@@ -51,22 +51,20 @@ int main() {
             Rectangle source = { 0, 0, (float)game_photo.width, (float)game_photo.height };
             Rectangle source2 = { 0, 0, 340, 340};
             Rectangle dest = { 0, 0, (float)GetScreenWidth(), (float)GetScreenHeight() };
-            Rectangle dest2 = { 0, 0, gameButton.width * 1.5f, gameButton.height * 1.5f };
+            Rectangle dest2 = { 0, 0, gameButton.width * 2.0f, gameButton.height * 2.0f };
             DrawTexturePro(game_photo, source, dest, {0, 0}, 0.0f, WHITE);
-            DrawText("GAMEPLAY SCREEN", 425, 20, 50, MAROON);
-
             /* ADDED all 4 Answer Boxes to the Game Screen
             As well as Text for the Answer to be ontop of the answer boxes*/
-            DrawTexturePro(gameButton, source2, dest2, Vector2{0, -200}, 0.0f, WHITE);
-            DrawText("Answer A", 225, 475, 25, WHITE);
-            DrawTexturePro(gameButton, source2, dest2, Vector2{-800, -200}, 0.0f, WHITE);
-            DrawText("Answer B", 1025, 475, 25, WHITE);
-            DrawTexturePro(gameButton, source2, dest2, Vector2{0, -400}, 0.0f, WHITE);
-            DrawText("Answer C", 225, 675, 25, WHITE);
-            DrawTexturePro(gameButton, source2, dest2, Vector2{-800, -400}, 0.0f, WHITE);
-            DrawText("Answer D", 1025, 675, 25, WHITE);
-
-
+            DrawTexturePro(gameButton, source2, dest2, Vector2{-105, -100}, 0.0f, WHITE);
+            DrawTexturePro(gameButton, source2, dest2, Vector2{-605, -100}, 0.0f, WHITE);
+            DrawTexturePro(gameButton, source2, dest2, Vector2{-105, -250}, 0.0f, WHITE);
+            DrawTexturePro(gameButton, source2, dest2, Vector2{-605, -250}, 0.0f, WHITE);
+            // Used Gemini to help me make sure the text and questions are always centered and never misaligned.
+            DrawText("EX: Who is Our Professor In CS 103", (GetScreenWidth() - MeasureText("EX: Who is Our Professor In CS 103", 50)) / 2, 100, 50, WHITE);
+            DrawText("Madeline Blount", 125 + (dest2.width - MeasureText("Madeline Blount", 25)) / 2, 125 + (dest2.height - 25) / 2, 25, WHITE);
+            DrawText("John Pork", 625 + (dest2.width - MeasureText("John Pork", 25)) / 2, 125 + (dest2.height - 25) / 2, 25, WHITE);
+            DrawText("Donald Trump", 125 + (dest2.width - MeasureText("Donald Trump", 25)) / 2, 275 + (dest2.height - 25) / 2, 25, WHITE);
+            DrawText("Barack Obama", 625 + (dest2.width - MeasureText("Barack Obama", 25)) / 2, 275 + (dest2.height - 25) / 2, 25, WHITE);
         }
         EndDrawing();
     }

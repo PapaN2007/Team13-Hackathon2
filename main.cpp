@@ -11,9 +11,7 @@ enum GameScreen {
 };
 
 int main() {
-    const int screenWidth = 1500;
-    const int screenHeight = 800;
-    InitWindow(screenWidth, screenHeight, "Team 13 Hackathon");
+    InitWindow(1500, 800, "Team 13 Hackathon");
     SetTargetFPS(30);
 
     Texture2D start_photo = LoadTexture("Start_Screen.png"); //Image Generated Using Claude.
@@ -21,11 +19,6 @@ int main() {
     Texture2D gameButton = LoadTexture("Answer_Button.png"); // Load button texture
 
     float frameHeight = (float)gameButton.height/NUM_FRAMES;
-    Rectangle sourceRec = { 0, 0, (float)gameButton.width, frameHeight };
-    int btnState = 0;               
-    bool btnAction = false;      
-    Rectangle btnBounds = { screenWidth/2.0f - gameButton.width/2.0f, screenHeight/2.0f - (float)gameButton.height/NUM_FRAMES/2.0f, (float)gameButton.width, frameHeight }; 
-    Vector2 mousePoint = { 0.0f, 0.0f };
     SetTargetFPS(60);
 
     GameScreen currentScreen = START_SCREEN;
@@ -48,33 +41,32 @@ int main() {
         ClearBackground(WHITE);
 
         if (currentScreen == START_SCREEN) {
+            //Drew the Start Screen 
             Rectangle source = { 0, 0, (float)start_photo.width, (float)start_photo.height };
             Rectangle dest   = { 0, 0, (float)GetScreenWidth(), (float)GetScreenHeight() };
             DrawTexturePro(start_photo, source, dest, {0, 0}, 0.0f, WHITE);
         }
         else if (currentScreen == GAMEPLAY_SCREEN) {
+            // Drew The GamePlay BackGround.
             Rectangle source = { 0, 0, (float)game_photo.width, (float)game_photo.height };
             Rectangle source2 = { 0, 0, 340, 340};
-            Rectangle dest   = { 0, 0, (float)GetScreenWidth(), (float)GetScreenHeight() };
+            Rectangle dest = { 0, 0, (float)GetScreenWidth(), (float)GetScreenHeight() };
+            Rectangle dest2 = { 0, 0, gameButton.width * 1.5f, gameButton.height * 1.5f };
             DrawTexturePro(game_photo, source, dest, {0, 0}, 0.0f, WHITE);
-            DrawTextureRec(gameButton, source2,  Vector2{100, 250}, WHITE); 
-            DrawText("GAMEPLAY SCREEN", 600, 20, 20, MAROON);
-            mousePoint = GetMousePosition();
-            btnAction = false;
-            if (CheckCollisionPointRec(mousePoint, btnBounds)) {
-                if (IsMouseButtonDown(MOUSE_BUTTON_LEFT)) btnState = 2;
-                else btnState = 1;
-                if (IsMouseButtonReleased(MOUSE_BUTTON_LEFT)) btnAction = true;
-            }
-            else btnState = 0;
-            if (btnAction)
-            {
-                cout << "hello" << endl;
-                cout << btnBounds.x << " " << btnBounds.y;
-            }
-            sourceRec.y = btnState*frameHeight;
-            }
+            DrawText("GAMEPLAY SCREEN", 425, 20, 50, MAROON);
 
+            //ADDED all 4 Answer Boxes to the Game Screen
+            DrawTexturePro(gameButton, source2, dest2, Vector2{0, -200}, 0.0f, WHITE);
+            DrawText("Answer A", 225, 475, 25, WHITE);
+            DrawTexturePro(gameButton, source2, dest2, Vector2{-800, -200}, 0.0f, WHITE);
+            DrawText("Answer B", 1025, 475, 25, WHITE);
+            DrawTexturePro(gameButton, source2, dest2, Vector2{0, -400}, 0.0f, WHITE);
+            DrawText("Answer C", 225, 675, 25, WHITE);
+            DrawTexturePro(gameButton, source2, dest2, Vector2{-800, -400}, 0.0f, WHITE);
+            DrawText("Answer D", 1025, 675, 25, WHITE);
+
+
+        }
         EndDrawing();
     }
 

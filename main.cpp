@@ -55,7 +55,8 @@ int main() {
             DrawTexturePro(game_photo, source, dest, {0, 0}, 0.0f, WHITE);
             DrawText("GAMEPLAY SCREEN", 425, 20, 50, MAROON);
 
-            //ADDED all 4 Answer Boxes to the Game Screen
+            /* ADDED all 4 Answer Boxes to the Game Screen
+            As well as Text for the Answer to be ontop of the answer boxes*/
             DrawTexturePro(gameButton, source2, dest2, Vector2{0, -200}, 0.0f, WHITE);
             DrawText("Answer A", 225, 475, 25, WHITE);
             DrawTexturePro(gameButton, source2, dest2, Vector2{-800, -200}, 0.0f, WHITE);

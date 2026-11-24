@@ -1,7 +1,5 @@
-// GameLogic.h - click logic, right/wrong checking and explanation display.
-// Functions are written in GameLogic.cpp.
-#include <vector>
-#include <string>
+// Game.h - click logic, right/wrong checking and explanation display.
+// Functions are written in Game.cpp.
 #include "raylib.h"
 #include "Question.h"
 using namespace std;

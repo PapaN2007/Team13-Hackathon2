@@ -8,10 +8,7 @@
 using namespace std;
 /* Used Gemini To help figure out why screen wouldn't stay after clicking enter
 and switching back to the start screen
-*/
-// The GameScreen enum (all of our screens) now lives in GameLogic.h
-
-/* Question Vectors with all of our questions,
+Question Vectors with all of our questions,
 each question answers and the correct answers. - Gained from Both Raifu and Chrislin.
 */
 vector<Question> questions = {
